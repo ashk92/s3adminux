@@ -1,0 +1,234 @@
+.ng-scope .navbar{
+  margin-bottom: 0px;
+  min-width: 1024px;
+  max-height: 61px;
+}
+.navbar-default .navbar-brand{
+  height: auto;
+}
+
+.navbar-default .navbar-brand .brand-image{
+  width: 90px;
+}
+
+.console-body{
+  min-width: 1024px;
+}
+
+.console-body .permission-form{
+  height: 72px;
+  margin-bottom: 0px;
+}
+
+.console-body .form-group{
+  margin-top: 19px;
+}
+
+.console-body .btn{
+  color: #072F38;
+  border-color: #F8F8F8;
+  background-color: #F8F8F8;
+}
+
+.console-body .btn-success{
+  color: #072F38;
+  border-color: #072F38;
+  background-color: #F8F8F8;
+}
+
+.console-body .search-bar{
+  width:100%;
+  margin-top: 19px;
+  margin-bottom: 19px;
+}
+
+.console-body .search-bar .form-control{
+  width: 93%;
+}
+
+.navbar .btn-default{
+  background-color: #F8F8F8;
+  color: #072F38;
+  border-color: #072F38;
+}
+
+.navbar .alert{
+  padding: 10px;
+  margin-bottom: 0px;
+  margin-right: 128px;
+  margin-top:7px;
+}
+
+.navbar .login-button{
+  margin-top:13px;
+  margin-right: 15px; 
+}
+
+.navbar .progress{
+  margin-top:20px;
+  margin-bottom: 0;
+  margin-right: 128px;
+  text-align: center;
+}
+
+.path-label{
+  padding-left: 17px;
+  padding-right: 16px;
+}
+
+.bucket-label{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.list-group .list-group-item{
+  text-align: center;
+}
+
+.infopanel{
+  background-color: #072F38;
+}
+
+.top-panel-table{
+  margin-top:5px;
+  margin-bottom: 4px;
+}
+
+.top-panel-table .btn-primary{
+  height: 100%;
+}
+
+.top-panel-table tr{
+  padding-right: 5px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 0px;
+}
+
+.top-panel-table td{
+  padding-right: 5px;
+  padding-bottom: 3px;
+  padding-left: 0px;
+}
+
+.side-menubar{
+  width: 100%;
+  min-width: 163px;
+  max-width: 210px;
+  background-color: #F8F8F8;
+}
+
+.side-menubar .btn:hover{
+  background-color: #CACAD4;
+  border-color: #CACAD4;
+}
+
+.side-menubar tr td{
+  padding: 10px;
+}
+
+.side-menubar .btn-primary{
+  width: 100%;
+  padding: 0;
+  border-color: #F8F8F8;
+  background-color: #F8F8F8;
+  color: #072F38;
+}
+
+.side-menubar .icon-column{
+  padding-left: 20px;
+  width: 0;
+}
+
+.side-menubar .label-column{
+  padding-left: 2px;
+  text-align: auto;
+}
+
+.side-menubar hr{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.side-menubar .btn-primary:active{
+  background-color: transparent;
+  color:black;
+}
+
+.side-menubar .btn-primary:focus{
+  background-color: transparent;
+  color:black;
+}
+
+.object-table{
+  margin-right: 20px;
+}
+
+.object-table th{
+  background-color: #F8F8F8;
+}
+
+.object-table .checkbox{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.top-panel-table .s3object-property{
+  font-size: 14px;
+  padding-left: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.file-row {
+  height: 30px;
+}
+
+.panel-arrow{
+  top:1px;
+}
+
+.panel-symbol{
+  color: darkblue;
+}
+
+.panel-title{
+  font-size: 14px;
+}
+
+.properties-panel-content{
+  float: right;
+}
+
+.modal-body .panel-group{
+  margin-bottom: 0px;
+}
+
+.main-body{
+  margin-top: 80px;
+  min-width: 1024px;
+}
+
+.main-body .btn-primary{
+  color: #072F38;
+  border-color: #F8F8F8;
+  background-color: #F8F8F8;
+}
+
+.side-menubar-div{
+  min-width: 390px;
+}
+
+
+.list-modal .modal-dialog{
+  margin-left: 100px;
+  margin-right: 100px;
+  width:85%;
+  min-width: 900px;
+}
+
+.app-name{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 24px;
+}

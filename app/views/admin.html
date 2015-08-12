@@ -1,0 +1,391 @@
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-2">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="http://www.mulesoft.com"><img class="brand-image" src="https://anypoint.mulesoft.com/accounts/images/ms-logo.svg"></a>
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<div ng-if="enableAlert" class="text-center">
+					<div class="{{alertType}}">
+						{{alertMessage}}
+						<button type="button" class="close" ng-click="closeAlert()">x</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1">
+				<div class="login-button">
+					<ul class="nav navbar-right">
+						<li>
+							<button class="btn btn-default dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								Actions <span class="glyphicon glyphicon-cog"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="actionDropdown">
+								<li><a ng-click="gotoAdminPage()">Admin</a></li>
+								<li><a ng-click="logout()">Logout</a></li>
+							</ul>
+						</li>
+					</ul>	
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+<div class="console-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-2">
+			</div>
+			<div class="col-xs-10">
+				<div class="input-group search-bar">
+					<span class="input-group-addon" ng-show="bucketSelected">
+						<span class="glyphicon glyphicon-hdd"></span>
+						&nbsp;{{selectedBucket}}
+					</span>
+					<span class="input-group-addon" ng-show="userSelected">
+						<span class="glyphicon glyphicon-user"></span>
+						&nbsp;{{selectedUser}}
+					</span>
+					<input type="text" class="form-control" placeholder="Search" ng-model="query">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<table class="side-menubar">
+					<tr>
+						<td>
+							<button class="btn btn-primary" ng-click="goBack()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-home"></span>
+										</td>
+										<td class="label-column">
+											<small>Home</small>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<hr>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-primary" ng-click="viewBucketsTable()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-search"></span>
+										</td>
+										<td class="label-column">
+											<small>View Buckets</small>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-primary" ng-click="viewUsersTable()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-user"></span>
+										</td>
+										<td class="label-column">
+											<small>View Users</small>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr ng-show="currentTable === Tables.USERS_TABLE || currentTable === Tables.BUCKET_USERS_TABLE || currentTable === Tables.USER_BUCKETS_TABLE">
+						<td>
+							<hr>
+						</td>
+					</tr>
+					<tr ng-show="currentTable === Tables.USER_BUCKETS_TABLE || currentTable === Tables.BUCKET_USERS_TABLE">
+						<td>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#changePermissionsModal" ng-click="formPermissionsMessage()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</td>
+										<td class="label-column">
+											<small>Modify Permissions</small>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr ng-show="currentTable === Tables.USERS_TABLE || currentTable === Tables.BUCKET_USERS_TABLE">
+						<td>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal" ng-click="reset()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-plus"></span>
+										</td>
+										<td class="label-column">
+											<div ng-show="currentTable === Tables.USERS_TABLE">
+												<small>Create User</small>
+											</div>
+											<div ng-show="currentTable === Tables.BUCKET_USERS_TABLE">
+												<small>Add User</small>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr ng-show="currentTable === Tables.USERS_TABLE || currentTable === Tables.BUCKET_USERS_TABLE">
+						<td>
+							<button class="btn btn-primary" ng-click="removeSelectedUsers()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-minus"></span>
+										</td>
+										<td class="label-column">
+											<div ng-show="currentTable === Tables.USERS_TABLE">
+												<small>Remove User</small>
+											</div>
+											<div ng-show="currentTable === Tables.BUCKET_USERS_TABLE">
+												<small>Remove Permission</small>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr ng-show="currentTable === Tables.USER_BUCKETS_TABLE">
+						<td>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#addBucketPermissionModal" ng-click="">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-plus"></span>
+										</td>
+										<td class="label-column">
+											<small>Add Permission</small>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+					<tr ng-show="currentTable === Tables.USER_BUCKETS_TABLE">
+						<td>
+							<button class="btn btn-primary" ng-click="selectedPermission = 'NONE'; formPermissionsMessage(); changePermission()">
+								<table>
+									<tr>
+										<td class="icon-column">
+											<span class="glyphicon glyphicon-minus"></span>
+										</td>
+										<td class="label-column">
+											<small>Remove Permission</small>
+										</td>
+									</tr>
+								</table>
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-xs-10">
+				<div ng-show="currentTable === Tables.BUCKETS_TABLE" class="object-table">
+					<table class = "table-hover" style="width:95%">
+						<tr class="file-row">
+							<th style="width:2%"></th>
+							<th class="text-left" style="width:73%">Bucket Name</th>
+							<th class="text-left" style="width:20%">Creation Date</th>
+							<th class="text-center" style="width:5%">Status</th>
+						</tr>
+						<tr ng-repeat="bucket in allBucketList | filter:query" class="file-row">
+							<td></td>
+							<td ng-show="!bucket.blackListedBucket" ng-click="viewBucketUsersTable(bucket.bucketName)"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}
+							</td>
+							<td ng-show="bucket.blackListedBucket"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}
+							</td>
+							<td class="text-left" style="font-size:14px;">{{bucket.creationDate}}</td>
+							<td class="text-center" style="font-size:14px;">
+								<span ng-show="bucket.blackListedBucket" class="glyphicon glyphicon-lock"></span>
+								<span ng-show="!bucket.blackListedBucket" class="glyphicon glyphicon-ok"></span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div ng-show="currentTable === Tables.USERS_TABLE" class="object-table">
+					<table class = "table-hover" style="width:95%">
+						<tr class="file-row">
+							<th  class="text-center" style="width:4%"><label><input type="checkbox" name="BucketsList" ng-model="allSelected" ng-click="selectAll(allUserList)"></label></th>
+							<th class="text-left" style="width:84%">User Email</th>
+							<th class="text-left" style="width:8%">User Type</th>
+						</tr>
+						<tr ng-repeat="user in allUserList | filter:query" class="file-row">
+							<td class="text-center"><label><input type="checkbox" name="AllUsersList" ng-model="user.isSelected"></input></label></td>
+							<td ng-click="viewUserBucketsTable(user.email,user.userId)"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;{{user.email}}</td>
+							<td class="text-left">{{user.userType}}</td>
+						</tr>
+					</table>
+				</div>
+				<div ng-show="currentTable === Tables.BUCKET_USERS_TABLE" class="object-table">
+					<table class = "table-hover" style="width:95%">
+						<tr class="file-row">
+							<th class="text-center" style="width:4%"><label><input type="checkbox" name="BucketsList" ng-model="allSelected" ng-click="selectAll(bucketUsersList)"></label></th>
+							
+							<th class="text-left" style="width:86%">User Email</th>
+							<th class="text-left" style="width:12%">Permission</th>
+						</tr>
+						<tr ng-repeat="user in bucketUsersList | filter:query" class="file-row">
+							<td class="text-center"><label><input type="checkbox" name="BucketUsersList" ng-model="user.isSelected"></label></td>
+							
+							<td><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{user.userEmail}}</td>
+							<td class="text-left">{{user.permissionType}}</td>
+						</tr>
+					</table>
+				</div>
+				<div ng-show="currentTable === Tables.USER_BUCKETS_TABLE" class="object-table">
+					<table class = "table-hover" style="width:95%">
+						<tr class="file-row">
+							<th class="text-center" style="width:4%"><label><input type="checkbox" name="BucketsList" ng-model="allSelected" ng-click="selectAll(userBucketsList)"></label></th>
+							
+							<th class="text-left" style="width:88%">BucketName</th>
+							<th class="text-left" style="width:8%">Permission</th>
+						</tr>
+						<tr ng-repeat="bucket in userBucketsList | filter:query" class="file-row">
+							<td class="text-center"><label><input type="checkbox" name="UserBucketsList" ng-model="bucket.isSelected"></label></td>
+							
+							<td><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}</td>
+							<td class="text-left" style="font-size:14px;">{{bucket.permissionType}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="addUserModal" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5>Enter the email address of the user to be added.</h5>
+			</div>
+			<div class="modal-body">
+				<form role="form" novalidate>
+					<div class="form-group">
+						<label>Email Address:</label>
+						<div class="input-group">
+							<input type="text" class="form-control" id="newUserEmail" ng-model="newUserEmail">
+							<span class="input-group-addon">
+								@mulesoft.com
+							</span>
+						</div>
+					</div>
+				</form>
+				<div ng-show="currentTable === Tables.BUCKET_USERS_TABLE">
+					<div class="radio">
+						<label><input type="radio" ng-model="selectedPermission" value="LIST">LIST</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" ng-model="selectedPermission" value="READ">READ</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" ng-model="selectedPermission" value="WRITE">WRITE</label>
+					</div>
+				</div>
+				<div ng-show="currentTable === Tables.USERS_TABLE">
+					<div class="radio">
+						<label><input type="radio" ng-model="selectedUserType" value="ADMIN">ADMIN</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" ng-model="selectedUserType" value="NORMAL">NORMAL</label>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addUser()">Add User</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changePermissionsModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5>
+					<div ng-show="noneSelected" style="color:red">
+						{{permissionsMessage}}
+					</div>
+					<div ng-show="!noneSelected">
+						{{permissionsMessage}}
+					</div>
+				</h5>
+			</div>
+			<div class="modal-body">
+				<div class="radio">
+					<label><input type="radio" name="optradio" ng-model="selectedPermission" value="LIST">LIST</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio" ng-model="selectedPermission" value="READ">READ</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio"  ng-model="selectedPermission" value="WRITE">WRITE</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="changePermission()">Change Permission</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="addBucketPermissionModal" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5>Enter the name of the bucket to be added.</h5>
+			</div>
+			<div class="modal-body">
+				<form role="form" novalidate>
+					<div class="form-group">
+						<label>Bucket Name:</label>
+						<input type="text" class="form-control" id="newBucketName" ng-model="newBucketName">
+					</div>
+				</form>
+				<div class="radio">
+					<label><input type="radio" ng-model="selectedPermission" value="LIST">LIST</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" ng-model="selectedPermission" value="READ">READ</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" ng-model="selectedPermission" value="WRITE">WRITE</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addBucket()">Add Bucket</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

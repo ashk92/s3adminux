@@ -1,0 +1,46 @@
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+  	<div class="row">
+  		<div class="col-xs-2">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="http://www.mulesoft.com"><img class="brand-image" src="https://anypoint.mulesoft.com/accounts/images/ms-logo.svg"></a>
+		    </div>
+		</div>
+		<div class="col-xs-9">
+			<div ng-if="enableAlert" class="text-center">
+				<div class="alert alert-danger">
+					{{alertMessage}}
+					<button type="button" class="close" ng-click="closeAlert()">&times;</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<div class="login-button">
+			    <div class="nav navbar-right">
+			    	<meta name="google-signin-scope" content="profile email">
+					<meta name="google-signin-client_id" content="97272733926-pcsf3guuks5ufomq2dbq40eguktaajof.apps.googleusercontent.com">
+					<script src="https://apis.google.com/js/platform.js" async defer></script>
+					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+					<script>
+						function onSignIn(googleUser) {
+							var scope = angular.element(document.getElementById("MainWrap")).scope()
+							scope.$apply(function(){
+								scope.signIn(googleUser);
+							});
+						};
+					</script>
+			    </div>
+			</div>
+		</div>
+	</div>
+  </div>
+</nav>
+<div class="console-body" id="MainWrap">
+	<div class="main-body">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h2>MuleSoft AWS Admin</h2>	
+			</div>
+		</div>
+	</div>
+</div>
