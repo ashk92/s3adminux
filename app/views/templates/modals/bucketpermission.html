@@ -1,0 +1,31 @@
+<div id="addBucketPermissionModal" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5>Enter the name of the bucket to be added.</h5>
+			</div>
+			<div class="modal-body">
+				<form role="form" novalidate>
+					<div class="form-group">
+						<label>Bucket Name:</label>
+						<input type="text" class="form-control" id="newBucketName" ng-model="$parent.newBucketName">
+					</div>
+				</form>
+				<div class="radio">
+					<label><input type="radio" ng-model="$parent.selectedPermission" value="LIST">LIST</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" ng-model="$parent.selectedPermission" value="READ">READ</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" ng-model="$parent.selectedPermission" value="WRITE">WRITE</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$parent.addBucket()">Add Bucket</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

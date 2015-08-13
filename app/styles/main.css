@@ -43,7 +43,7 @@
 }
 
 .console-body .search-bar .form-control{
-  width: 93%;
+  width: 95%;
 }
 
 .navbar .btn-default{
@@ -182,6 +182,10 @@
 
 .file-row {
   height: 30px;
+}
+
+.file-row th{
+  background-color: #F8F8F8;
 }
 
 .panel-arrow{

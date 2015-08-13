@@ -262,7 +262,7 @@ app.controller('ExplorerCtrl',function ($scope, $http, $window, $timeout, $route
         {headers: {'Authorization': 'Bearer ' + $scope.accessToken}}
       ).success(function (data, status) {
         if(data.userType === 'ADMIN'){
-          $window.location.href = '#/admin';
+          $window.location.href = '#/admin/buckets';
         }
         else{
           $scope.showAlert(ALERT_ERROR,'You are not an admin user');
@@ -272,7 +272,7 @@ app.controller('ExplorerCtrl',function ($scope, $http, $window, $timeout, $route
           $scope.logout();
         }
         else{
-          $scope.showAlert(ALERT_ERROR,'Unable to get user permission. Cannot navigate to admin page.');
+          $scope.showAlert(ALERT_ERROR,'Unable to verify permission. Cannot navigate to admin page.');
         }
       });
     };

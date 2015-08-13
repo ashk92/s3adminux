@@ -1,0 +1,55 @@
+<div ng-include="'views/templates/navbar/mainnavbar.html'">
+</div>
+<div class="console-body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-2">
+			</div>
+			<div class="col-xs-10">
+				<div class="input-group search-bar">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-hdd"></span>
+						&nbsp;{{currentBucket}}
+					</span>
+					<input type="text" class="form-control" placeholder="Search" ng-model="query">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<table class="side-menubar">
+					<tbody ng-include="'views/templates/adminsidenav/mainoptions.html'">
+					</tbody>
+					<tbody ng-include="'views/templates/adminsidenav/bucketusersoptions.html'">
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-10">
+				<table class = "table-hover" style="width:95%">
+					<tr class="file-row">
+						<th class="text-center" style="width:4%">
+							<label>
+								<input type="checkbox" name="BucketUsersList" ng-model="allSelected" ng-click="selectAll()">
+							</label>
+						</th>
+						<th class="text-left" style="width:86%">User Email</th>
+						<th class="text-left" style="width:12%">Permission</th>
+					</tr>
+					<tr ng-repeat="user in bucketUsersList | filter:query" class="file-row">
+						<td class="text-center">
+							<label>
+								<input type="checkbox" name="BucketUsersList" ng-model="user.isSelected" ng-click="closeAlert()">
+							</label>
+						</td>
+						<td><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{user.userEmail}}</td>
+						<td class="text-left">{{user.permissionType}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="'views/templates/modals/adduser.html'">
+</div>
+<div ng-include="'views/templates/modals/changepermission.html'">
+</div>

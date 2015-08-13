@@ -26,9 +26,21 @@ angular
         templateUrl: 'views/buckets.html',
         controller: 'BucketsCtrl',
       })
-      .when('/admin',{
-        templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl',
+      .when('/admin/buckets',{
+        templateUrl: 'views/allbuckets.html',
+        controller: 'AllBucketsCtrl',
+      })
+      .when('/admin/buckets/:bucketName',{
+        templateUrl: 'views/bucketusers.html',
+        controller: 'BucketUsersCtrl',
+      })
+      .when('/admin/users',{
+        templateUrl: 'views/allusers.html',
+        controller: 'AllUsersCtrl',
+      })
+      .when('/admin/users/:userId',{
+        templateUrl: 'views/userbuckets.html',
+        controller: 'UserBucketsCtrl',
       })
       .otherwise({
         redirectTo: '/'

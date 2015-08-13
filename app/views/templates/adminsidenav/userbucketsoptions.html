@@ -1,0 +1,53 @@
+<tr>
+	<td>
+		<hr>
+	</td>
+</tr>
+<tr>
+	<td>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#addBucketPermissionModal" ng-click="$parent.reset()">
+			<table>
+				<tr>
+					<td class="icon-column">
+						<span class="glyphicon glyphicon-plus"></span>
+					</td>
+					<td class="label-column">
+						<small>Add Permission</small>
+					</td>
+				</tr>
+			</table>
+		</button>
+	</td>
+</tr>
+<tr>
+	<td>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#changePermissionsModal" ng-click="formPermissionsMessage()">
+			<table>
+				<tr>
+					<td class="icon-column">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</td>
+					<td class="label-column">
+						<small>Modify Permissions</small>
+					</td>
+				</tr>
+			</table>
+		</button>
+	</td>
+</tr>
+<tr>
+	<td>
+		<button class="btn btn-primary" ng-click="formPermissionsMessage(); removePermissions()">
+			<table>
+				<tr>
+					<td class="icon-column">
+						<span class="glyphicon glyphicon-minus"></span>
+					</td>
+					<td class="label-column">
+						<small>Remove Permission</small>
+					</td>
+				</tr>
+			</table>
+		</button>
+	</td>
+</tr>

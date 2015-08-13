@@ -7,6 +7,12 @@
 				</div>
 			</div>
 			<div class="col-xs-9">
+				<div ng-show="enableAlert" class="text-center">
+					<div class="{{alertType}}">
+						{{alertMessage}}
+						<button type="button" class="close" ng-click="closeAlert()">&times;</button>
+					</div>
+				</div>
 			</div>
 			<div class="col-xs-1">
 				<div class="login-button">

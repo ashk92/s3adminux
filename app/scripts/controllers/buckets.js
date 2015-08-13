@@ -6,6 +6,9 @@ app.controller('BucketsCtrl',function ($scope, $http, $window, $cookies, pathser
 
 	$scope.bucketList = [];
 	$scope.accessToken = $cookies.get('accessToken');
+
+	$scope.enableAlert = false;
+	$scope.alertMessage = '';
 	
   	var ALERT_ERROR = 'alert alert-danger';
 
@@ -21,6 +24,10 @@ app.controller('BucketsCtrl',function ($scope, $http, $window, $cookies, pathser
 		$scope.alertMessage = message;
   	};
 
+  	$scope.closeAlert = function(){
+  		$scope.enableAlert = false;
+  	}
+
 	$scope.getBucketList = function(){
 
 		if($scope.accessToken === null){
@@ -32,9 +39,6 @@ app.controller('BucketsCtrl',function ($scope, $http, $window, $cookies, pathser
 			{headers: {'Authorization': 'Bearer ' + $scope.accessToken}}
 		).success(function (data, status) {
 			$scope.bucketList = data;
-			if(status !== 200){
-				$scope.showAlert(ALERT_ERROR,'Unable to list folders');
-			}
 		}).error( function(data,status){
 			if(status === 401){
 				$scope.logout();
@@ -52,7 +56,7 @@ app.controller('BucketsCtrl',function ($scope, $http, $window, $cookies, pathser
 			{headers: {'Authorization': 'Bearer ' + $scope.accessToken}}
 		).success(function (data, status) {
 			if(data.userType === 'ADMIN'){
-				$window.location.href = '#/admin';
+				$window.location.href = '#/admin/buckets';
 			}
 			else{
 				$scope.showAlert(ALERT_ERROR,'You are not an admin user');
@@ -62,7 +66,7 @@ app.controller('BucketsCtrl',function ($scope, $http, $window, $cookies, pathser
 				$scope.logout();
 			}
 			else{
-				$scope.showAlert(ALERT_ERROR,'Unable to get user permission. Cannot navigate to admin page.');
+				$scope.showAlert(ALERT_ERROR,'Unable to verify permission. Cannot navigate to admin page.');
 			}
 		});
 	}
