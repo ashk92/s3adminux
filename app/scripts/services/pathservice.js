@@ -10,7 +10,7 @@
 angular.module('s3adminApp')
   .service('pathservice', function () {
     
-    var baseUrlDetails = {baseUrl:'http://localhost:8080'};
+    var baseUrlDetails = {baseUrl:'https://s3admin-qa.mulesoft.com/api'};
 
     
     this.getBaseUrl = function(){
