@@ -25,26 +25,28 @@
 				</table>
 			</div>
 			<div class="col-xs-10">
-				<table class = "table-hover" style="width:95%">
-					<tr class="file-row">
-						<th class="text-center" style="width:4%">
-							<label>
-								<input type="checkbox" name="BucketUsersList" ng-model="allSelected" ng-click="selectAll()">
-							</label>
-						</th>
-						<th class="text-left" style="width:86%">User Email</th>
-						<th class="text-left" style="width:12%">Permission</th>
-					</tr>
-					<tr ng-repeat="user in bucketUsersList | filter:query" class="file-row">
-						<td class="text-center">
-							<label>
-								<input type="checkbox" name="BucketUsersList" ng-model="user.isSelected" ng-click="closeAlert()">
-							</label>
-						</td>
-						<td><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{user.userEmail}}</td>
-						<td class="text-left">{{user.permissionType}}</td>
-					</tr>
-				</table>
+				<div class="object-table">
+					<table class = "table-hover" style="width:100%">
+						<tr class="file-row">
+							<th class="text-center" style="width:4%">
+								<label>
+									<input type="checkbox" name="BucketUsersList" ng-model="allSelected" ng-click="selectAll()">
+								</label>
+							</th>
+							<th class="text-left" style="width:86%">User Email</th>
+							<th class="text-left" style="width:12%">Permission</th>
+						</tr>
+						<tr ng-repeat="user in bucketUsersList | filter:query" class="file-row">
+							<td class="text-center">
+								<label>
+									<input type="checkbox" name="BucketUsersList" ng-model="user.isSelected" ng-click="closeAlert()">
+								</label>
+							</td>
+							<td><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{user.userEmail}}</td>
+							<td class="text-left">{{user.permissionType}}</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

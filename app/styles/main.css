@@ -40,10 +40,11 @@
   width:100%;
   margin-top: 19px;
   margin-bottom: 19px;
+  padding-right: 20px;
 }
 
 .console-body .search-bar .form-control{
-  width: 95%;
+  
 }
 
 .navbar .btn-default{
@@ -162,6 +163,10 @@
 
 .object-table{
   margin-right: 20px;
+  height: 500px;
+  border-style: solid;
+  border-color: #F8F8F8;
+  overflow: scroll;
 }
 
 .object-table th{

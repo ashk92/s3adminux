@@ -10,7 +10,7 @@
 angular.module('s3adminApp')
   .service('pathservice', function () {
     
-    var baseUrlDetails = {baseUrl:'http://localhost:8085'};
+    var baseUrlDetails = {baseUrl:'http://localhost:8080'};
 
     
     this.getBaseUrl = function(){
@@ -56,6 +56,10 @@ angular.module('s3adminApp')
     this.getCurrentPathObjectsApiUrl = function(bucketName,currentPath){
     	return baseUrlDetails.baseUrl + '/buckets/' + bucketName + '?prefix=' + currentPath;
     };
+
+    this.getSelectedObjectPropertiesApiUrl = function(bucketName,currentPath,selectedObject){
+        return baseUrlDetails.baseUrl + '/buckets/' + bucketName + '/files/fileproperties?prefix=' + currentPath + selectedObject;
+    }
 
     //Functions that provide API Urls for Admin Service
     this.getAdminBucketsApiUrl = function(){

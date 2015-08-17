@@ -21,22 +21,24 @@
 				</table>
 			</div>
 			<div class="col-xs-10">
-				<table class = "table-hover" style="width:95%">
-					<tr class="file-row">
-						<th  class="text-center" style="width:4%"><label><input type="checkbox" name="UsersList" ng-model="allSelected" ng-click="closeAlert();selectAll()"></label></th>
-						<th class="text-left" style="width:84%">User Email</th>
-						<th class="text-left" style="width:8%">User Type</th>
-					</tr>
-					<tr ng-repeat="user in allUsersList | filter:query" class="file-row">
-						<td class="text-center">
-							<label>
-								<input type="checkbox" name="AllUsersList" ng-model="user.isSelected" ng-click="closeAlert()"></input>
-							</label>
-						</td>
-						<td ng-click="viewUserBucketsTable(user.userId,user.email)"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;{{user.email}}</td>
-						<td class="text-left">{{user.userType}}</td>
-					</tr>
-				</table>
+				<div class="object-table">
+					<table class = "table-hover" style="width:100%">
+						<tr class="file-row">
+							<th  class="text-center" style="width:4%"><label><input type="checkbox" name="UsersList" ng-model="allSelected" ng-click="closeAlert();selectAll()"></label></th>
+							<th class="text-left" style="width:84%">User Email</th>
+							<th class="text-left" style="width:8%">User Type</th>
+						</tr>
+						<tr ng-repeat="user in allUsersList | filter:query" class="file-row">
+							<td class="text-center">
+								<label>
+									<input type="checkbox" name="AllUsersList" ng-model="user.isSelected" ng-click="closeAlert()"></input>
+								</label>
+							</td>
+							<td ng-click="viewUserBucketsTable(user.userId,user.email)"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;{{user.email}}</td>
+							<td class="text-left">{{user.userType}}</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

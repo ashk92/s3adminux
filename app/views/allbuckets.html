@@ -19,26 +19,28 @@
 				</table>
 			</div>
 			<div class="col-xs-10">
-				<table class = "table-hover" style="width:95%">
-					<tr class="file-row">
-						<th style="width:2%"></th>
-						<th class="text-left" style="width:73%">Bucket Name</th>
-						<th class="text-left" style="width:20%">Creation Date</th>
-						<th class="text-center" style="width:5%">Status</th>
-					</tr>
-					<tr ng-repeat="bucket in allBucketList | filter:query" class="file-row">
-						<td></td>
-						<td ng-show="!bucket.blackListedBucket" ng-click="viewBucketUsersTable(bucket.bucketName)"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}
-						</td>
-						<td ng-show="bucket.blackListedBucket"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}
-						</td>
-						<td class="text-left" style="font-size:14px;">{{bucket.creationDate}}</td>
-						<td class="text-center" style="font-size:14px;">
-							<span ng-show="bucket.blackListedBucket" class="glyphicon glyphicon-lock"></span>
-							<span ng-show="!bucket.blackListedBucket" class="glyphicon glyphicon-ok"></span>
-						</td>
-					</tr>
-				</table>
+				<div class="object-table">
+					<table class = "table-hover" style="width:100%">
+						<tr class="file-row">
+							<th style="width:2%"></th>
+							<th class="text-left" style="width:73%">Bucket Name</th>
+							<th class="text-left" style="width:20%">Creation Date</th>
+							<th class="text-center" style="width:5%">Status</th>
+						</tr>
+						<tr ng-repeat="bucket in allBucketList | filter:query" class="file-row">
+							<td></td>
+							<td ng-show="!bucket.blackListedBucket" ng-click="viewBucketUsersTable(bucket.bucketName)"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}
+							</td>
+							<td ng-show="bucket.blackListedBucket"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;&nbsp;&nbsp;{{bucket.bucketName}}
+							</td>
+							<td class="text-left" style="font-size:14px;">{{bucket.creationDate}}</td>
+							<td class="text-center" style="font-size:14px;">
+								<span ng-show="bucket.blackListedBucket" class="glyphicon glyphicon-lock"></span>
+								<span ng-show="!bucket.blackListedBucket" class="glyphicon glyphicon-ok"></span>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

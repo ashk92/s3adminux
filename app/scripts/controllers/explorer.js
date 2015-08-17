@@ -27,6 +27,10 @@ app.controller('ExplorerCtrl',function ($scope, $http, $window, $timeout, $route
     // File upload variables
   	$scope.fileUploadProgressBarVisible = false;
     $scope.fileProgressPercentage = 0;
+
+    // Current File Properties
+    $scope.currentObjectPermission = '';
+    $scope.currentObjectContentType = '';
   	
   	var ALERT_INFO = 'alert alert-info';
   	var ALERT_SUCCESS = 'alert alert-success';
@@ -201,6 +205,27 @@ app.controller('ExplorerCtrl',function ($scope, $http, $window, $timeout, $route
   			t.focus();
   		}, 100);
   	};
+
+    $scope.getObjectProperties = function(){
+      $scope.currentObjectPermission = 'waiting..';
+      $scope.currentObjectContentType = 'waiting..';
+
+      $http.get(
+        pathservice.getSelectedObjectPropertiesApiUrl($scope.bucketName,$scope.currentPath,$scope.selectedObject.name),
+        {headers: {'Authorization': 'Bearer ' + $scope.accessToken}}
+      ).success(function (data) {
+        $scope.currentObjectPermission = data.permissionType;
+        $scope.currentObjectContentType = data.contentType;
+      }).error(function(data,status){
+        if(status === 401){
+          $scope.logout();
+        }
+        else{
+          $scope.currentObjectPermission = 'unable to get from server';
+          $scope.currentObjectContentType = 'unable to get from server';
+        }
+      });
+    }
 
   	$scope.goBack = function(){
   		if($scope.currentPath === ''){
